@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+// src/App.js
+import React, { useState } from 'react';
+import BookForm from './components/BookForm';
+import BookList from './components/BookList';
 import './App.css';
 
 function App() {
+  const [selectedBook, setSelectedBook] = useState(null);
+
+  const handleSave = () => setSelectedBook(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Book Management</h1>
+      <BookForm selectedBook={selectedBook} onSave={handleSave} onCancel={() => setSelectedBook(null)} />
+      <BookList onEdit={setSelectedBook} />
     </div>
   );
 }
